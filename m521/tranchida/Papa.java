@@ -6,7 +6,7 @@ public class Papa {
     
     public static void main(String[] args) {
         
-        String word = "charlie";
+        String word = "CHARLIE";
         int rows = 20;
         int cols = 20;
 

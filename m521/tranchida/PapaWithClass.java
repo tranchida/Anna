@@ -3,9 +3,19 @@ package m521.tranchida;
 import java.util.Random;
 
 public class PapaWithClass {
- 
+
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_BLACK = "\u001B[30m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_PURPLE = "\u001B[35m";
+    public static final String ANSI_CYAN = "\u001B[36m";
+    public static final String ANSI_WHITE = "\u001B[37m";
+
     public static void main(String[] args) {
-        
+
         // cas 1
         PapaWithClass cas1 = new PapaWithClass("CHARLIE", 20, 20, Direction.HORIZONTAL);
         cas1.display();
@@ -25,13 +35,13 @@ public class PapaWithClass {
     private int cols;
     private Direction direction;
 
-    private char[][] tableau;
+    private String[][] tableau;
 
     public enum Direction {
 
-        HORIZONTAL( true, false ),
-        VERTICAL( false, true ),
-        DIAGONAL( true, true );
+        HORIZONTAL(true, false),
+        VERTICAL(false, true),
+        DIAGONAL(true, true);
 
         private boolean x;
         private boolean y;
@@ -58,12 +68,12 @@ public class PapaWithClass {
 
         Random random = new Random(System.currentTimeMillis());
 
-        tableau = new char[rows][cols];
+        tableau = new String[rows][cols];
 
         for (int r = 0; r < rows; r++) {
 
             for (int c = 0; c < cols; c++) {
-                tableau[r][c] = (char) (random.nextInt(26) + 'A');
+                tableau[r][c] = "" + (char) (random.nextInt(26) + 'A');
             }
 
         }
@@ -83,18 +93,17 @@ public class PapaWithClass {
             startColumn = 0;
         }
 
-        for (int i=0; i<word.length(); i++) {
+        for (int i = 0; i < word.length(); i++) {
 
-            tableau[startRow + (direction.y == true ? i : 0)][startColumn + (direction.x == true ? i : 0)] = word.charAt(i);
-
+            tableau[startRow + (direction.y == true ? i : 0)][startColumn + (direction.x == true ? i : 0)] = ANSI_RED + word.charAt(i) + ANSI_RESET;
+        
         }
 
     }
 
-
     public void display() {
 
-        for(int r=0; r< tableau.length; r++ ) {
+        for (int r = 0; r < tableau.length; r++) {
 
             for (int c = 0; c < tableau[r].length; c++) {
                 System.out.print(tableau[r][c] + " ");

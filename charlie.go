@@ -23,23 +23,23 @@ type direction struct {
 	Y int
 }
 
-var HORIZONTAL = &direction{1, 0}
-var VERTICAL = &direction{0, 1}
-var DIAGONAL = &direction{1, 1}
+var HORIZONTAL = direction{1, 0}
+var VERTICAL = direction{0, 1}
+var DIAGONAL = direction{1, 1}
 
 const ANSI_RESET = "\u001B[0m"
 const ANSI_RED = "\u001B[31m"
 
-type charlie struct {
+type Charlie struct {
 	Word      string
 	Rows      int
 	Columns   int
-	Direction *direction
+	Direction direction
 	tableau   [][]string
 }
 
-func NewCharlie(word string, rows int, columns int, direction *direction) *charlie {
-	c := &charlie{
+func NewCharlie(word string, rows int, columns int, direction direction) Charlie {
+	c := Charlie{
 		Word:      word,
 		Rows:      rows,
 		Columns:   columns,
@@ -53,14 +53,14 @@ func NewCharlie(word string, rows int, columns int, direction *direction) *charl
 }
 
 // init struct charlie
-func (c *charlie) init() {
+func (c *Charlie) init() {
 	c.tableau = make([][]string, c.Rows)
 	for i := 0; i < c.Rows; i++ {
 		c.tableau[i] = make([]string, c.Columns)
 	}
 }
 
-func (c *charlie) fill() {
+func (c *Charlie) fill() {
 
 	for i := 0; i < c.Rows; i++ {
 		for j := 0; j < c.Columns; j++ {
@@ -70,7 +70,7 @@ func (c *charlie) fill() {
 
 }
 
-func (c *charlie) fillWord() {
+func (c *Charlie) fillWord() {
 
 	startRow := rand.Intn(c.Rows)
 	if c.Direction.Y == 1 {
@@ -93,7 +93,7 @@ func (c *charlie) fillWord() {
 
 }
 
-func (c *charlie) Print() {
+func (c *Charlie) Print() {
 	for i := 0; i < c.Rows; i++ {
 		for j := 0; j < c.Columns; j++ {
 			fmt.Print(c.tableau[i][j], " ")

@@ -8,13 +8,13 @@ import (
 func main() {
 
 	c1 := NewCharlie("CHARLIE", 20, 20, HORIZONTAL)
-	c1.print()
+	c1.Print()
 
 	c2 := NewCharlie("CHARLIE", 20, 20, DIAGONAL)
-	c2.print()
+	c2.Print()
 
 	c3 := NewCharlie("CHARLIE", 20, 20, VERTICAL)
-	c3.print()
+	c3.Print()
 
 }
 
@@ -93,7 +93,7 @@ func (c *charlie) fillWord() {
 
 }
 
-func (c *charlie) print() {
+func (c *charlie) Print() {
 	for i := 0; i < c.Rows; i++ {
 		for j := 0; j < c.Columns; j++ {
 			fmt.Print(c.tableau[i][j], " ")

@@ -27,8 +27,8 @@ var HORIZONTAL = &direction{1, 0}
 var VERTICAL = &direction{0, 1}
 var DIAGONAL = &direction{1, 1}
 
-var ANSI_RESET = "\u001B[0m"
-var ANSI_RED = "\u001B[31m"
+const ANSI_RESET = "\u001B[0m"
+const ANSI_RED = "\u001B[31m"
 
 type charlie struct {
 	Word      string
